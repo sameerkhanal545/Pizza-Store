@@ -4,7 +4,7 @@ class DBHelper
     
     const DB_USER ='root';
     const DB_PASSWORD = '';
-    const DB_HOST = 'localhost';
+    const DB_HOST = 'localhost:3306';
     const DB_NAME ='pizza_store';
     const CHARSET = 'utf8mb4';
     
@@ -198,20 +198,27 @@ class DBHelper
      function loadProvinces($pdo)
     {
         $stmt = $pdo->prepare("INSERT INTO provinces (Name, Abbreviation) VALUES (:Name, :Abbreviation)");
-        $stmt->bindParam(':Name', $name);
-        $stmt->bindParam(':Abbreviation', $code);
-        
+      
         // insert data
         $name = "Ontario";
         $code = "ON";
+        $stmt->bindParam(':Name', $name);
+        $stmt->bindParam(':Abbreviation', $code);
+        
         $stmt->execute();
         
         $name = "Quebec";
         $code = "QC";
+        $stmt->bindParam(':Name', $name);
+        $stmt->bindParam(':Abbreviation', $code);
+        
         $stmt->execute();
         
         $name = "British Columbia";
         $code = "BC";
+        $stmt->bindParam(':Name', $name);
+        $stmt->bindParam(':Abbreviation', $code);
+        
         $stmt->execute();
 
     }
