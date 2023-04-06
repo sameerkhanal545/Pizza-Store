@@ -39,13 +39,13 @@
         <span class="error"><?php echo $errors['CustomerPhoneError']; ?></span>
         <?php } 
         ?>
-        <input name="CustomerEmail" placeholder="Email *" value= <?php echo $customerData['CustomerEmail'] ?? ''; ?>
+        <input type="text" name="CustomerEmail" placeholder="Email *" value= "<?php echo $customerData['CustomerEmail'] ?? ''; ?>">
         <?php if (!empty($errors['CustomerEmailError'])) { ?>
         <span class="error"><?php echo $errors['CustomerEmailError']; ?></span>
         <?php } 
         ?>
         <label for="password">Password:</label>
-        <input type = "password" id ="password" name="PasswordHash" value=<?php echo $customerData['CustomerEmail'] ?? ''; ?>
+        <input type = "password" id ="password" name="PasswordHash" value= "<?php echo $customerData['CustomerEmail'] ?? ''; ?>">
         <?php if (!empty($errors['PasswordError'])) { ?>
         <span class="error"><?php echo $errors['PasswordError']; ?></span>
         <?php } 

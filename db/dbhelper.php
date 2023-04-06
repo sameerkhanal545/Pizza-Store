@@ -3,7 +3,7 @@ class DBHelper
 {
     
     const DB_USER ='root';
-    const DB_PASSWORD = '';
+    const DB_PASSWORD = 'root';
     const DB_HOST = 'localhost:3306';
     const DB_NAME ='pizza_store';
     const CHARSET = 'utf8mb4';

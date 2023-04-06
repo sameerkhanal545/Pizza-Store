@@ -24,7 +24,7 @@
             session_start();
             $_SESSION['errors'] = $customer->getErrors();
             $_SESSION['customerData'] = $customerData;
-            header("Location: addCustomer.php");
+            header("Location: ../login/login.php");
             exit();
     }
            
