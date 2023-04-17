@@ -46,33 +46,7 @@
         // }
     }
 ?>
-<!doctype html>
-<html>
-    <body>
-        <form method="POST">
-            <h1>Login Form</h1>
-            <table>
-                <tr>
-                    <td>Email</td>
-                    <td><input name="Email"></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="Password"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" value="Login" style="width:100%">
-                    </td>
-                </tr>
-            </table>
-            <?php
-                foreach($errors as $error)
-                    echo $error;
-            ?>
-        </form>
-    </body>
-</html>
+
 
 
 

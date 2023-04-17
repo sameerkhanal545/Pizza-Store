@@ -54,6 +54,7 @@
                 $row=$stmt->fetch(PDO::FETCH_ASSOC);
                 if(password_verify($this->Password,$row["PasswordHash"]))
                 {
+                    session_start();
                     session_regenerate_id();
                     $_SESSION["CustomerID"]=$row["CustomerID"];
                     return true;

@@ -44,9 +44,9 @@ class DBHelper
                 
                 $instance->createProvinceTable($pdo);
                 $instance->createCustomerTable($pdo);
-                $instance->createPizzaPriceTable($pdo);
                 $instance->createPaymentMethodTable($pdo);
                 $instance->createPizzaTable($pdo);
+                $instance->createPizzaPriceTable($pdo);
                 $instance->createPizzaToppingTable($pdo);
                 $instance->createOrderTable($pdo);
                 $instance->createCartTable($pdo);
@@ -114,17 +114,30 @@ class DBHelper
         $pdo->query(
             "CREATE TABLE orders (
                 OrderID INT(11) NOT NULL AUTO_INCREMENT,
-                PizzaID INT(11) NOT NULL,
                 CustomerID INT(11) NOT NULL,
-                Quantity INT(11) NOT NULL,
+                ShppingAddress VARCHAR(255) NOT NULL,
+                ZipCode VARCHAR(255) NOT NULL,
+                ShppingCustomerName VARCHAR(255) NOT NULL,
                 TotalPrice DECIMAL(10, 2) NOT NULL,
                 OrderDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 Status ENUM('PENDING', 'PAID', 'CANCELLED') NOT NULL DEFAULT 'PENDING',
                 PRIMARY KEY (OrderID),
-                FOREIGN KEY (PizzaID) REFERENCES pizzas(PizzaID),
                 FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
              )
             ");
+              $pdo->query(
+                "CREATE TABLE order_item (
+                    OrderItemID INT(11) NOT NULL AUTO_INCREMENT,
+                    PizzaID INT(11) NOT NULL,
+                    OrderID INT(11) NOT NULL,
+                    Size VARCHAR(10) NOT NULL,
+                    Price DECIMAL(10, 2) NOT NULL,
+                    Quantity INT NOT NULL,
+                    PRIMARY KEY (OrderItemID),
+                    FOREIGN KEY (PizzaID) REFERENCES pizzas(PizzaID),
+                    FOREIGN KEY (OrderID) REFERENCES orders(OrderID)
+                 )
+                ");
     }
 
     function createPizzaTable($pdo)
@@ -134,9 +147,8 @@ class DBHelper
                 PizzaID INT(11) NOT NULL AUTO_INCREMENT,
                 Name VARCHAR(255) NOT NULL,
                 Description TEXT,
-                PRIMARY KEY (PizzaID),
-                PriceID INT NOT NULL,
-                FOREIGN KEY (PriceID) REFERENCES prices(PriceID)
+                PizzaImage VARCHAR(255),
+                PRIMARY KEY (PizzaID)
             )
             ");
     }
@@ -146,8 +158,10 @@ class DBHelper
         $pdo->query(
             "CREATE TABLE prices (
                 PriceID INT(11) NOT NULL AUTO_INCREMENT,
-                status ENUM('SMALL', 'MEDIUM', 'LARGE') NOT NULL DEFAULT 'MEDIUM',
+                PizzaID INT(11) NOT NULL,
+                size ENUM('SMALL', 'MEDIUM', 'LARGE') NOT NULL DEFAULT 'MEDIUM',
                 Price DECIMAL(10, 2) NOT NULL,
+                FOREIGN KEY (PizzaID) REFERENCES pizzas(PizzaID),
                 PRIMARY KEY (PriceID)
             )
             ");
@@ -155,18 +169,28 @@ class DBHelper
     
        function createCartTable($pdo)
     {
+       
         $pdo->query(
             "CREATE TABLE cart (
                   CartID INT NOT NULL AUTO_INCREMENT,
                   CustomerID INT NOT NULL,
-                  PizzaID INT NOT NULL,
-                  Size VARCHAR(10) NOT NULL,
-                  Quantity INT NOT NULL,
                   PRIMARY KEY (CartID),
-                  FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID),
-                  FOREIGN KEY (PizzaID) REFERENCES pizzas(PizzaID)
+                  FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
             )
             ");
+             $pdo->query(
+                "CREATE TABLE cart_item (
+                      CartItemID INT NOT NULL AUTO_INCREMENT,
+                      CartID INT NOT NULL,
+                      PizzaID INT NOT NULL,
+                      Size VARCHAR(10) NOT NULL,
+                      Price DECIMAL(10, 2) NOT NULL,
+                      Quantity INT NOT NULL,
+                      PRIMARY KEY (CartItemID),
+                      FOREIGN KEY (CartID) REFERENCES cart(CartID),
+                      FOREIGN KEY (PizzaID) REFERENCES pizzas(PizzaID)
+                )
+                ");
     }
 
     function createPizzaToppingTable($pdo)

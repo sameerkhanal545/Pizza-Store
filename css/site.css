@@ -1,0 +1,190 @@
+body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+
+    .body-content {
+        padding: 0;
+    }
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #777;
+    border-color: #fff
+}
+
+.jumbotron-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    width: 100%;
+}
+
+.jumbotron-image .overlay {
+    width: 100%;
+    height: 400px;
+    background-color: rgba(0, 35, 82, 0.7);
+    z-index: 999
+}
+
+.jumbotron-image>h1 {
+    margin-top: 170px;
+    font-size: 3em;
+}
+
+.jumbotron-image>p {
+    margin-top: 8px;
+    font-size: 1.2em;
+}
+
+.banner-body {
+    padding-top: 150px;
+    font-size: 3em;
+    margin: 0 auto;
+    align-content: center;
+    text-align: center;
+}
+
+.card {
+    padding: 1.5em .5em .5em;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.card-body {
+    border-radius: 2em;
+}
+
+.card-img,
+.card-img-bottom,
+.card-img-top {
+    width: 100%;
+    height: 250px;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.details-card {
+    width: 80%;
+    margin: auto;
+}
+
+
+.description-container {
+    position: relative;
+    /* height: 900px; */
+}
+
+.main-description1 {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.main-description h3 {
+    font-size: 2rem;
+}
+
+.add-inputs,
+.add-inputs input {
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+.add-inputs button {
+    border-radius: 0;
+}
+
+.add-inputs input {
+    height: 48px;
+    width: 58px;
+    border-radius: 0;
+}
+
+.add-inputs select {
+    height: 48px;
+    width: 100px;
+    border-radius: 0;
+}
+
+.input-fields {
+    height: 48px;
+    width: 75px;
+    border-radius: 0;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 1.8rem;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.cart-button {
+    float: right;
+    margin: 5px;
+}
