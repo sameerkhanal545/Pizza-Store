@@ -10,7 +10,6 @@ $order = new Order(array_merge([
     "ZipCode" => "",
     "ShippingCustomerName" => "",
 ], $orderDetails));
-var_dump($orderDetails);
 if (count($order->getErrors()) > 0) {
     foreach ($order->getErrors() as $error)
         echo $error;
@@ -33,8 +32,8 @@ if (count($order->getErrors()) > 0) {
         header("Location: ../login/login.php");
         exit;
     }
-    // header("Location: cartList.php");
-    // exit();
+    header("Location: orderList.php");
+    exit();
 }
 
 ?>

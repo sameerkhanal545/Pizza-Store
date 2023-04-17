@@ -21,8 +21,8 @@ if (count($cartItem->getErrors()) > 0) {
 } else {
 
     $cartItem->insert();
-    // header("Location: cartList.php");
-    // exit();
+    header("Location: cartList.php");
+    exit();
 }
 
 ?>
