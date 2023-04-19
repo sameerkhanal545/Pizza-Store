@@ -1,4 +1,5 @@
 <?php
+if (!defined('SITE_ROOT'))
 define('SITE_ROOT', __DIR__ . "/../../");
 
 require_once(SITE_ROOT . "/db/dbhelper.php");
@@ -276,7 +277,7 @@ class Pizza
         $pdo = DBHelper::getConnection();
         $stmt = $pdo->prepare("SELECT p.PizzaID as PizzaID, p.Name as PizzaName, p.Description as PizzaDescription,
                 p.PizzaImage as PizzaImage 
-                FROM pizza_store.pizzas as p");
+                FROM pizza_store.pizzas as p where p.PizzaID in (select PizzaID FROM prices)");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -314,3 +315,4 @@ class Pizza
     }
 
 }
+?>

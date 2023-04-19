@@ -1,4 +1,11 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['CustomerID'])) {
+    header("Location: /");
+    exit();
+}
 require_once "../admin/pizza/pizza.php";
 
 $pizza = new Pizza([]);

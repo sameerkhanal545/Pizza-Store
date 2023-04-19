@@ -53,8 +53,8 @@ if (isset($_SESSION['CustomerID'])) {
                                     <?php echo $order->getTotalPrice(); ?>
                                 </strong></td>
                             <td class="col-sm-1 col-md-1 text-center">
-                                <input type="submit" name="ctl00$MainContent$rptOrders$ctl00$btnViewOrder" value="Details"
-                                    id="MainContent_rptOrders_btnViewOrder_0" class="btn btn-danger">
+                                <a href="orderDetails.php?OrderID=<?php echo $order->getOrderID() ?>" css="btn btn-info"
+                                    class="btn btn-danger">Details</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

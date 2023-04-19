@@ -45,7 +45,7 @@ class Customer
     {
         $this->ProvinceID = trim(htmlspecialchars($ProvinceID));
         if (empty($this->ProvinceID))
-            $this->errors["ProvinceID"] = "<p>Province is required.</p>";
+            $this->errors["ProvinceIDError"] = "<p>Province is required.</p>";
         else if (!filter_var($this->ProvinceID, FILTER_VALIDATE_INT))
             $this->errors["ProvinceIDError"] = "<p>User Id is invalid.</p>";
         $this->ProvinceID = (int) $this->ProvinceID;

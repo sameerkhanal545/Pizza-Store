@@ -206,7 +206,7 @@ class Order
 
             $orderList[] = $orderObj;
 
-            
+
         }
         return $orderList;
     }

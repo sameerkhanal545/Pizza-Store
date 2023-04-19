@@ -12,6 +12,10 @@ if (isset($_SESSION['CustomerID'])) {
     if ($cart) {
         $cartItem = new CartItem();
         $cartItems = $cartItem->findAllByCart($cart->getCartID());
+        if (sizeof($cartItems) <= 0) {
+            header("Location: ../cart/cartList.php");
+            exit;
+        }
         $total = 0;
         foreach ($cartItems as $item) {
             $total += $item->getPrice() * $item->getQuantity();
@@ -23,8 +27,9 @@ if (isset($_SESSION['CustomerID'])) {
 }
 
 ?>
+
 <body>
-<?php require_once("../shared/header.php") ?>
+    <?php require_once("../shared/header.php") ?>
 
     <div class="container">
 
@@ -35,18 +40,26 @@ if (isset($_SESSION['CustomerID'])) {
                     <span class="badge badge-secondary badge-pill">3</span>
                 </h4>
                 <ul class="list-group mb-3 sticky-top">
-                <?php foreach ($cartItems as $cart): ?>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0"><?php echo $cart->getPizzaName() ?></h6>
-                            <small class="text-muted">Quantity: <?php echo $cart->getQuantity() ?></small>
-                        </div>
-                        <span class="text-muted">$<?php echo $cart->getPrice() ?></span>
-                    </li>
+                    <?php foreach ($cartItems as $cart): ?>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">
+                                    <?php echo $cart->getPizzaName() ?>
+                                </h6>
+                                <small class="text-muted">Quantity:
+                                    <?php echo $cart->getQuantity() ?>
+                                </small>
+                            </div>
+                            <span class="text-muted">$
+                                <?php echo $cart->getPrice() ?>
+                            </span>
+                        </li>
                     <?php endforeach; ?>
                     <li class="list-group-item d-flex justify-content-between text-success">
                         <span>Total (CAD)</span>
-                        <strong>$<?php echo $total ?></strong>
+                        <strong>$
+                            <?php echo $total ?>
+                        </strong>
                     </li>
                 </ul>
             </div>
@@ -56,18 +69,21 @@ if (isset($_SESSION['CustomerID'])) {
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName">First name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required="">
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
+                                value="" required="">
                             <div class="invalid-feedback"> Valid first name is required. </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Last name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastname" placeholder="" value="" required="">
+                            <input type="text" class="form-control" id="lastName" name="lastname" placeholder=""
+                                value="" required="">
                             <div class="invalid-feedback"> Valid last name is required. </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" name="ShippingAddress" id="address" placeholder="1234 Main St" required="">
+                        <input type="text" class="form-control" name="ShippingAddress" id="address"
+                            placeholder="1234 Main St" required="">
                         <div class="invalid-feedback"> Please enter your shipping address. </div>
                     </div>
                     <div class="row">
@@ -94,20 +110,23 @@ if (isset($_SESSION['CustomerID'])) {
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="cc-name">Name on card</label>
-                            <input type="text" class="form-control" id="cc-name" name="CardName" placeholder="" required="">
+                            <input type="text" class="form-control" id="cc-name" name="CardName" placeholder=""
+                                required="">
                             <small class="text-muted">Full name as displayed on card</small>
                             <div class="invalid-feedback"> Name on card is required </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="cc-number">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" name="CardNumber" placeholder="" required="">
+                            <input type="text" class="form-control" id="cc-number" name="CardNumber" placeholder=""
+                                required="">
                             <div class="invalid-feedback"> Credit card number is required </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="cc-expiration">Expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" name="ExpiryDate" placeholder="" required="">
+                            <input type="text" class="form-control" id="cc-expiration" name="ExpiryDate" placeholder=""
+                                required="">
                             <div class="invalid-feedback"> Expiration date required </div>
                         </div>
                         <div class="col-md-3 mb-3">
@@ -133,24 +152,25 @@ if (isset($_SESSION['CustomerID'])) {
 </body>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+    (function () {
+        'use strict'
 
-  window.addEventListener('load', function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation')
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation')
 
-    // Loop over them and prevent submission
-    Array.prototype.filter.call(forms, function (form) {
-      form.addEventListener('submit', function (event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-        form.classList.add('was-validated')
-      }, false)
-    })
-  }, false)
-}())
+            // Loop over them and prevent submission
+            Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        }, false)
+    }())
 </script>
+
 </html>

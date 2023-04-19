@@ -188,3 +188,7 @@ input[type="select"] {
     float: right;
     margin: 5px;
 }
+sup {
+    top: -1.5em;
+    font-size: 1.2em;
+}

@@ -43,11 +43,14 @@ if (empty($PizzaId)) {
                             <input name="PizzaID" type=hidden class="form-control"
                                 value="<?php echo $pizza->getPizzaID(); ?>">
 
-                            <div class="row">
-                                <div class="col">
-                                    <input name="Quantity" id="quantity" class="form-control mb-2" type="Number"
-                                        value="1" min="1">
-                                </div>
+                            <?php if (!$isAdmin) { ?>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <input name="Quantity" id="quantity" class="form-control mb-2" type="Number"
+                                            value="1" min="1">
+                                    </div>
+                                <?php } ?>
                                 <div class="col">
                                     <select class="form-control-select" name="Price" id="sizeDropDown"
                                         onchange="updatePrice()">
@@ -60,11 +63,13 @@ if (empty($PizzaId)) {
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col mt-.5">
-                                    <input type="submit" value="Add To Cart" class="btn btn-primary btn-lg"
-                                        style="width:100%;">
+                                <?php if (!$isAdmin) { ?>
+                                    <div class="col mt-.5">
+                                        <input type="submit" value="Add To Cart" class="btn btn-primary btn-lg"
+                                            style="width:100%;">
 
-                                </div>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </form>
 

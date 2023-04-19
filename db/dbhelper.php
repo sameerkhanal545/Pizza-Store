@@ -82,9 +82,10 @@ class DBHelper
                 CustomerEmail VARCHAR(255) NOT NULL,
                 CustomerPhone VARCHAR(20) NOT NULL,
                 CustomerCity VARCHAR(20) NOT NULL,
-                CustomerAddress VARCHAR(20) NOT NULL,
+                CustomerAddress VARCHAR(255) NOT NULL,
                 PasswordHash VARCHAR(256) NOT NULL,
                 ProvinceID INT NOT NULL,
+                Role VARCHAR(20),
                 FOREIGN KEY (ProvinceID) REFERENCES provinces(ProvinceID)
 
                 )

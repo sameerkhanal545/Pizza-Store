@@ -172,7 +172,17 @@ class OrderItem
 
         $conn = null;
     }
-
+    public function findAllByOrder($OrderID)
+    {
+        $pdo = DBHelper::getConnection();
+        $stmt = $pdo->prepare("SELECT * FROM order_item o join pizzas p on p.PizzaID = o.PizzaID WHERE o.OrderID = :OrderID");
+        $stmt->execute(["OrderID" => $OrderID]);
+        $orderItems = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $orderItems[] = new OrderItem($row);
+        }
+        return $orderItems;
+    }
 
 }
 

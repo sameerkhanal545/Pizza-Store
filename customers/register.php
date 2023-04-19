@@ -18,13 +18,13 @@
         
         if(empty($customer->getErrors())){
         $customer->insert();
-            header("Location: listScooter.php");
-            exit();
+        header("Location: /products/products.php");
+        exit();
         } else {
             session_start();
             $_SESSION['errors'] = $customer->getErrors();
             $_SESSION['customerData'] = $customerData;
-            header("Location: ../login/login.php");
+            header("Location: ../customers/addCustomer.php");
             exit();
     }
            

@@ -16,9 +16,7 @@ $pizzas = $pizza->findAll(); // get the list of pizzas
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
-        <th scope="col">Size</th>
-        <th scope="col">Price</th>
-        <th scope="col" colspan="2">Actions </th>
+        <th scope="col-4" colspan="4">Actions </th>
       </tr>
     </thead>
     <tbody>
@@ -30,15 +28,9 @@ $pizzas = $pizza->findAll(); // get the list of pizzas
           <td scope="row">
             <?php echo $rowPizza->getPizzaDescription(); ?>
           </td>
-          <td scope="row">
-            <?php echo $rowPizza->getPizzaSize(); ?>
-          </td>
-          <td scope="row">
-            <?php echo $rowPizza->getPizzaPrice() ?>
-          </td>
-          <td colspan="2" >
+          <td colspan="4" >
             <a class="btn btn-secondary" href="editPizza.php?PizzaID=<?php echo $rowPizza->getPizzaID(); ?>">Edit</a>
-            <a class="btn btn-danger" href="deletePizza.php?PizzaID=<?php echo $rowPizza->getPizzaID(); ?>">Delete</a>
+            <a class="btn btn-danger" href="addPrices.php?PizzaID=<?php echo $rowPizza->getPizzaID(); ?>">Add Price</a>
           </td>
         </tr>
       <?php endforeach; ?>

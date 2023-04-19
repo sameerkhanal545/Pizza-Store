@@ -1,5 +1,6 @@
 <?php
-
+if (!defined('SITE_ROOT'))
+define('SITE_ROOT', __DIR__ . "/../../");
 require_once(SITE_ROOT . "/db/dbhelper.php");
 
 
@@ -52,6 +53,8 @@ class Cart
         $this->setCartID($pdo->lastInsertId());
         $this->CustomerID = $customerId;
     }
+
+
 }
 
 ?>

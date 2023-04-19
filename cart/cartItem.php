@@ -233,6 +233,18 @@ class CartItem
         $stmt->execute();
         return $stmt->rowCount(); // Return the number of affected rows
     }
+
+    public function getCartCount($customerID)
+    {
+        $pdo = DBHelper::getConnection();
+
+        $sql = "SELECT count(*) FROM `cart_item` WHERE `CartID` in (SELECT CartID FROM cart where CustomerID = :customerID)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['customerID' => $customerID]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $cartCount = $row['count(*)'];
+       return  $cartCount;
+    }
 }
 
 ?>
